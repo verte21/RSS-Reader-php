@@ -46,11 +46,4 @@ function passwordMatch($password, $passwordRepeat)
     return $result;
 }
 
-function loginExists($login, $db){
- // todo 
-}
 
-
-function emailExists($email, $db){
-    // todo
-}

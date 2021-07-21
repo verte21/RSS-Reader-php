@@ -1,5 +1,6 @@
 <?php
 include_once 'includes/header.inc.php';
+include 'includes/class-autoload.inc.php';
 ?>
 
 
@@ -14,7 +15,7 @@ include_once 'includes/header.inc.php';
 </head>
 
 <body>
-    <form action='signUp.php' method='post'>
+    <form action='includes/signup.inc.php' method='post'>
         <div class="form-row col-md-5 ">
              <input type="text" name="email" class="form-control" placeholder="Email...">
             <input type="text" name="login" class="form-control" placeholder="Login...">
