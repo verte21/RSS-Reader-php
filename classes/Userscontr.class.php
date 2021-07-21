@@ -4,7 +4,6 @@ class Userscontr extends Users{
 
 
     function signUp(){
-
         if (isset($_POST["submit"])){
             $login = $_POST["login"];
             $email = $_POST["email"];
@@ -14,45 +13,59 @@ class Userscontr extends Users{
             require_once 'functions.inc.php';
         
             if (emptySignup($login, $email, $password, $passwordRepeat) !== false){
-                header("Location:../signupForm.inc.php?err=emptySignup");
+                header("Location:../signupForm.php?err=emptySignup");
                 exit();
             }
         
             if (invalidLogin($login) !== false){
-                header("Location:../signupForm.inc.php?err=invalidLogin");
+                header("Location:../signupForm.php?err=invalidLogin");
                 exit();
             }
         
             if (invalidEmail($email) !== false){
-                header("Location:../signupForm.inc.php?err=invalidEmail;");
+                header("Location:../signupForm.php?err=invalidEmail;");
                 exit();
             } 
         
             if (passwordMatch($password, $passwordRepeat) !== false){
-                header("Location:../signupForm.inc.php?err=pwdNotMatch");
+                header("Location:../signupForm.php?err=pwdNotMatch");
                 exit();
             }
         
-            if ($this->getUserByLogin($login) !== false){
-                header("Location:../signupForm.inc.php?err=loginExists");
-                exit();
-            }
-            
-            if ($this->getUserByEmail($email) !== false){
-                header("Location:../signupForm.inc.php?err=emailExists");
+            $checkLogin = $this->getUserByLogin($login)[0];
+            if ($checkLogin){
+                header("Location:../signupForm.php?err=loginExists");
                 exit();
             }
 
-            $this->addUser($login, $email, $password);
-            
+            $checkEmail = $this->getUserByEmail($email)[0];
+            if ($checkEmail){
+                header("Location:../signupForm.php?err=emailExists");
+                exit();
+            }
+          
+
+           $this->addUser($login, $email, $password);
+        
+           // getting id of the user that was just made
+           $userTableId = $this->getIdFromUserTable($login, $email)[0];
+          echo $userTableId;
+          // $this->addUserFeeds($userTableId);
+           
 
 
+           // TODO gdzie po zarejestrowaniu 
+          // header("Location:../index.php");   
         
         } else {
             header("Location:signUpForm.php");
         }
 
     } 
+
+    
+
+
 
 
     function siemankoTest(){

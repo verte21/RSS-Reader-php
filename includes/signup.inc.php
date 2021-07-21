@@ -1,5 +1,5 @@
 <?php
-include '/classes/User.class.php';
+include "../class-autoload.inc.php";
 
 $obj = new Userscontr();
-$obj->siemankoTest();
+$obj->signUp();

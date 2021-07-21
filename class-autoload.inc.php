@@ -10,3 +10,4 @@ function myAutoLoader($className) {
 
     include_once $fullpath;
 } 
+

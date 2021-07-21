@@ -1,6 +1,6 @@
 <?php
 include_once 'includes/header.inc.php';
-include 'includes/class-autoload.inc.php';
+include 'class-autoload.inc.php';
 ?>
 
 
@@ -17,10 +17,10 @@ include 'includes/class-autoload.inc.php';
 <body>
     <form action='includes/signup.inc.php' method='post'>
         <div class="form-row col-md-5 ">
-             <input type="text" name="email" class="form-control" placeholder="Email...">
+             <input type="email" name="email" class="form-control" placeholder="Email...">
             <input type="text" name="login" class="form-control" placeholder="Login...">
-            <input type="text" name="password" class="form-control" placeholder="Password...">
-            <input type="text" name="passwordRepeat" class="form-control" placeholder="Repeat password...">
+            <input type="password" name="password" class="form-control" placeholder="Password...">
+            <input type="password" name="passwordRepeat" class="form-control" placeholder="Repeat password...">
 
 
 
