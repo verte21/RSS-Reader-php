@@ -21,6 +21,16 @@ class Userscontr extends Users{
                 header("Location:../signupForm.php?err=invalidLogin");
                 exit();
             }
+
+            if (wrongLoginLength($login) !== false){
+                header("Location:../signupForm.php?err=loginLength");
+                exit();
+            }
+
+            if (wrongPasswordLength($password) !== false){
+                header("Location:../signupForm.php?err=passwordLength");
+                exit();
+            }
         
             if (invalidEmail($email) !== false){
                 header("Location:../signupForm.php?err=invalidEmail;");
@@ -32,35 +42,32 @@ class Userscontr extends Users{
                 exit();
             }
         
-            $checkLogin = $this->getUserByLogin($login)[0];
-            if ($checkLogin){
+        
+            if ($this->isUserInDb($login) > 0){
                 header("Location:../signupForm.php?err=loginExists");
                 exit();
             }
 
-            $checkEmail = $this->getUserByEmail($email)[0];
-            if ($checkEmail){
+            if ($this->isEmailInDb($email) > 0){
                 header("Location:../signupForm.php?err=emailExists");
                 exit();
             }
-          
-
-           $this->addUser($login, $email, $password);
         
-           // getting id of the user that was just made
-           $userTableId = $this->getIdFromUserTable($login, $email)[0];
-          echo $userTableId;
-          // $this->addUserFeeds($userTableId);
-           
+        
 
-
-           // TODO gdzie po zarejestrowaniu 
-          // header("Location:../index.php");   
+            $this->addUser($login, $email, $password);
+                
+            // getting id of the user that was just made         
+            $userTableId = $this->getIdFromUserTable($login, $email);
+            
+            // signing user id to  user_feeds-id table
+            $this->addUserFeedsTable($userTableId);
+            
+            header("Location:../index.php?msg=postSignUp");
         
         } else {
             header("Location:signUpForm.php");
         }
-
     } 
 
     

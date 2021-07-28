@@ -18,34 +18,26 @@
 <body>
 
 
-    <form>
+    <form action='includes/login.inc.php' method='post'>
         <div class="mb-3 text-center">
-            <label for="exampleInputEmail1" class="form-label">Login</label>
-
-            <div class="row justify-content-center">
-                <div class="col-md-5">
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-
-                </div>
+            <label for="login" class="form-label">Login</label>
+            <div class="row justify-content-center col-md-5">
+                    <input type="text" name="login" class="form-control" placeholder="Login...">
 
             </div>
         </div>
 
         <div class="mb-3 text-center">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-
-            <div class="row justify-content-center">
-                <div class="col-md-5">
-                    <input type="password" class="form-control align-self-center" id="exampleInputPassword1">
-
-                </div>
+            <label for="pasword" class="form-label">Password</label>
+            <div class="row justify-content-center col-md-5">
+                   <input type="password" name="password" class="form-control align-self-center"  placeholder="Password...">
 
             </div>
 
         </div>
         <div class="col-md-12">
             <div class="text-center">
-                <button type="submit" class="btn btn-primary ">Submit</button>
+                <button type="submit" name="submit" class="btn btn-primary ">Submit</button>
             </div>
         </div>
     </form>

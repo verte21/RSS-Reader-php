@@ -14,6 +14,7 @@ function emptySignup($login, $email, $password, $passwordRepeat)
 
 function invalidLogin($login)
 {
+    $loginLength = strlen($login);
     $result = false;
     if (!preg_match("/^[a-zA-Z0-9]*$/", $login)) {
         $result = true;
@@ -22,6 +23,32 @@ function invalidLogin($login)
     }
     return $result;
 }
+
+function wrongLoginLength($login)
+{
+    $loginLength = strlen($login);
+    $result = false;
+    if ($loginLength > 10 || $loginLength < 3) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+}
+
+function wrongPasswordLength($password)
+{
+    $loginLength = strlen($password);
+    $result = false;
+    if ($loginLength > 40 || $loginLength < 8) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+}
+
+
 
 function invalidEmail($email)
 {
@@ -44,6 +71,10 @@ function passwordMatch($password, $passwordRepeat)
         $result = false;
     }
     return $result;
+}
+
+function readTitleOfRSSFeed($feed){
+    
 }
 
 
