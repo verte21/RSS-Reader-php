@@ -73,8 +73,12 @@ function passwordMatch($password, $passwordRepeat)
     return $result;
 }
 
-function readTitleOfRSSFeed($feed){
-    
+function readTitleOfRSSFeed($feed)
+{
+
+    $domOBJ = new DOMDocument();
+    $domOBJ->load($feed);
+
+    $title = $domOBJ->getElementsByTagName('title')->item(0)->nodeValue;
+    return $title;
 }
-
-
