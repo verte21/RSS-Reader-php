@@ -38,9 +38,9 @@ function wrongLoginLength($login)
 
 function wrongPasswordLength($password)
 {
-    $loginLength = strlen($password);
+    $passwordLength = strlen($password);
     $result = false;
-    if ($loginLength > 40 || $loginLength < 8) {
+    if ($passwordLength > 40 || $passwordLength < 5) {
         $result = true;
     } else {
         $result = false;
@@ -82,3 +82,23 @@ function readTitleOfRSSFeed($feed)
     $title = $domOBJ->getElementsByTagName('title')->item(0)->nodeValue;
     return $title;
 }
+
+function readFeedsFromInsertedSite($feed)
+{
+    $domOBJ = new DOMDocument();
+    $domOBJ->load($feed);
+    $content = $domOBJ->getElementsByTagName('item');
+
+    foreach ($content as $data) {
+        $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
+        $link = $data->getElementsByTagName("link")->item(0)->nodeValue;
+        echo "$title :: $link";
+        echo "<br>";
+    }
+}
+
+
+
+
+
+

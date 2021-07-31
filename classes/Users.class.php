@@ -21,14 +21,12 @@ class Users extends Dbh
         $stmt->execute([$id]);
     }
 
-    // protected function getUser($login)
-    // {
-    //     $sql = "SELECT * FROM users WHERE login = ?";
-    //     $stmt = $this->connect()->prepare($sql);
-    //     $stmt->execute([$login]);
-    //     $results = $stmt->fetchAll();
-    //     return $results;
-    // }
+    function createUserFeedsTable($login)
+    {
+        $sql = "CREATE TABLE $login (`id` INT(255) UNSIGNED NOT NULL AUTO_INCREMENT , `feed_id` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+    }
 
     protected function isUserInDb($login)
     {
@@ -60,17 +58,20 @@ class Users extends Dbh
         return $return;
     }
 
-    function getUserByLoginAndPwd($login, $password){
-        
+
+
+    function getUserByLoginAndPwd($login, $password)
+    {
+
         $sql = "SELECT password FROM users WHERE login = ?";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$login]);
         $results = $stmt->fetch();
-        if (password_verify($password, $results['password'])){
+        if (password_verify($password, $results['password'])) {
             $sql = "SELECT * FROM users WHERE login = ?";
             $stmt = $this->connect()->prepare($sql);
             $stmt->execute([$login]);
-            $results = $stmt->fetch();  
+            $results = $stmt->fetch();
         } else {
             header("Location:../index.php?err=invalidLoginOrPwd");
             exit();
@@ -86,4 +87,6 @@ class Users extends Dbh
 
 
     }
+
+
 }

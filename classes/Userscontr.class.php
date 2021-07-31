@@ -58,10 +58,10 @@ class Userscontr extends Users{
             $this->addUser($login, $email, $password);
                 
             // getting id of the user that was just made         
-            $userTableId = $this->getIdFromUserTable($login, $email);
+           // $userTableId = $this->getIdFromUserTable($login, $email);
             
             // signing user id to  user_feeds-id table
-            $this->addUserFeedsTable($userTableId);
+            $this->createUserFeedsTable($login);
             
             header("Location:../index.php?msg=postSignUp");
         

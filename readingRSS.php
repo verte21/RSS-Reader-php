@@ -3,16 +3,18 @@
 
 
  $domOBJ = new DOMDocument();
- $domOBJ->load("https://zaufanatrzeciastrona.pl/post/category/drobiazgi/feed/");
+ $domOBJ->load("https://zaufanatrzeciastrona.pl/feed/");
+ $content = $domOBJ->getElementsByTagName('channel');
 
- $content = $domOBJ->getElementsByTagName('item');
+
+ foreach ($content as $data) {
+  $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
+  echo "$title";
+  echo "<br>";
+}
+
  
- foreach( $content as $data )
- {
-   $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
-   $link = $data->getElementsByTagName("link")->item(0)->nodeValue;
-   echo "$title :: $link";
-   echo "<br>";
+  
 
- }
+ 
 ?>
