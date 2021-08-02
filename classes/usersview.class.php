@@ -13,7 +13,7 @@ class UsersView extends Users {
 
         foreach ($content as $data) {
             $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
-                echo "<li><a class='nav-link' id='$title' href='/'>$title</a></li>";
+                echo "<li><a class='nav-link' id='$feed' name='feedSiteName' href='/'>$title</a></li>";
         }
         
     }

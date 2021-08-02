@@ -24,7 +24,7 @@ class Users extends Dbh
     function createUserFeedsTable($login)
     {
         $sql = "CREATE TABLE $login (`id` INT(255) UNSIGNED NOT NULL AUTO_INCREMENT , `feed_id` INT(10) NOT NULL,
-                 PRIMARY KEY (`id`), FOREIGN KEY (`feed_id`) REFERENCES `feeds`(`id`) ON DELETE NO ACTION ON UPDATE NO ACTION ) ENGINE = InnoDB";
+                 PRIMARY KEY (`id`)) ENGINE = InnoDB";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
     }

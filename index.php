@@ -14,6 +14,16 @@
     
 </head>
 <body>
+    <script>
+        $(document).ready(function() {
+            $("#feedSiteName").click(function() {
+                // TODO do contentu dać id i wczytać na bieżąco 
+               // $("#feedSiteName").id;
+            })
+
+
+        })
+    </script>
     <?php
     if(isset($_SESSION['logged_id'])){
         include_once 'includes/content.inc.php';
