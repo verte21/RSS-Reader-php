@@ -1,8 +1,7 @@
 <?php
-
-class UsersView extends Users {
-
-
+class UsersView extends Users
+{
+     
     protected function getFeedingSiteName($feed)
     {
         // https://zaufanatrzeciastrona.pl/feed/
@@ -11,50 +10,67 @@ class UsersView extends Users {
 
         $content = $domOBJ->getElementsByTagName('channel');
 
-        foreach ($content as $data) {
-            $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
-                echo "<li><a class='nav-link' id='$feed' name='feedSiteName' href='/'>$title</a></li>";
+
+        if (!empty(count($content))) {
+            foreach ($content as $data) {
+                $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
+            }
+        } else {
+            $title = $domOBJ->getElementsByTagName('title')->item(0)->nodeValue;
         }
-        
+
+        echo "<li><a class='nav-link' id='$feed' name='feedSiteName'>$title</a></li>";
     }
 
-     function showNamesOnNav(){
+    function showNamesOnNav()
+    {
 
         $feeds = $this->getFeedsFromDatabase($_SESSION['login']);
-        foreach($feeds as $feed) {
-            
+        foreach ($feeds as $feed) {
+
             $this->getFeedingSiteName($feed["source"]);
         }
     }
 
-    function showFeedContent(){
-       
-        $feeds = $this->getFeedsFromDatabase($_SESSION['login']);
-        foreach($feeds as $feed) {
-            
-            $this->getFeedingSiteContent($feed["source"]);
+
+    function printFeedHeaders($title, $link){
+        echo    "<tr>
+             <td>$title</td>
+            <td><a href='$link'>Czytaj...</a></td>
+        </tr>";
+}
+
+    function showFeedContent($feed)
+    {
+
+        $this->getFeedingSiteContent($feed);
+    }
+
+    function getFeedingSiteContent($feed)
+    {
+        // https://zaufanatrzeciastrona.pl/feed/
+        $domOBJ = new DOMDocument();
+        $domOBJ->load("$feed");
+
+        $content = $domOBJ->getElementsByTagName('item');
+        if (!empty(count($content))) {
+            foreach ($content as $data) {
+                $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
+                $link = $data->getElementsByTagName("link")->item(0)->nodeValue;
+                $this->printFeedHeaders($title, $link);
+            }
         }
+
+        $content = $domOBJ->getElementsByTagName('entry');
+        if (!empty(count($content))) {
+            foreach ($content as $data) {
+                $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
+                $link = $data->getElementsByTagName("link")->item(0)->nodeValue;
+                $this->printFeedHeaders($title, $link);
+            }
+        }
+        
     }
 
-    function getFeedingSiteContent($feed){
-         // https://zaufanatrzeciastrona.pl/feed/
-         $domOBJ = new DOMDocument();
-         $domOBJ->load("https://zaufanatrzeciastrona.pl/feed/");
- 
-         $content = $domOBJ->getElementsByTagName('item');
- 
-         foreach ($content as $data) {
-             $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
-             $link = $data->getElementsByTagName("link")->item(0)->nodeValue;
-             echo " <tr>
-                    <td>$title</td>
-                    <td><a href='$link'>Czytaj...</a></td>
-                </tr>";
-         }
-         
-
-
-
-    }
     
 }

@@ -17,9 +17,7 @@
             }
             ?>
 
-            <li class="nav-item"><a class="nav-link" href="#">Random feed</a></li>
             <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
-            <li class="nav-item"><a class="nav-link" href="includes/logout.inc.php">Log Out</a></li>
 
             <!-- <?php
                 if (isset($_SESSION['logged_id']))

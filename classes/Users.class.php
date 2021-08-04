@@ -90,7 +90,7 @@ class Users extends Dbh
     }
 
     protected function getFeedsFromDatabase($login){
-        //$sql = "SELECT feed_id FROM $login";
+
         $sql = "SELECT f.source FROM feeds f, $login u WHERE u.feed_id = f.id";
         
         $stmt = $this->connect()->prepare($sql);

@@ -3,15 +3,33 @@
 
 
  $domOBJ = new DOMDocument();
- $domOBJ->load("https://zaufanatrzeciastrona.pl/feed/");
- $content = $domOBJ->getElementsByTagName('channel');
+ $domOBJ->load("https://www.informationweek.com/rss_simple.asp");
 
 
+$channel = $domOBJ->getElementsByTagName('channel');
+foreach ($channel as $data) {
+  $channelTitle = $data->getElementsByTagName("title")->item(0)->nodeValue;
+  echo "$channelTitle";
+
+}
+
+
+ $content = $domOBJ->getElementsByTagName('item');
  foreach ($content as $data) {
   $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
-  echo "$title";
-  echo "<br>";
+  $link = $data->getElementsByTagName("link")->item(0)->nodeValue;
+  echo    "<tr>
+              <td>$title</td>
+              <td><a href='$link'>Czytaj...</a></td>
+              <br>
+          </tr>";
 }
+
+
+  //$title = $domOBJ->getElementsByTagName("title")->item(0)->nodeValue;
+  // echo "$title";
+  // echo "<br>";
+
 
  
   

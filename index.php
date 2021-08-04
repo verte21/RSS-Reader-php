@@ -1,6 +1,8 @@
 <?php 
      session_start();
     include_once 'includes/header.inc.php';
+
+
 ?>
 
 <!DOCTYPE html>
@@ -11,22 +13,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RSS-Reader</title>
     <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
 </head>
 <body>
-    <script>
-        $(document).ready(function() {
-            $("#feedSiteName").click(function() {
-                // TODO do contentu dać id i wczytać na bieżąco 
-               // $("#feedSiteName").id;
-            })
-
-
-        })
-    </script>
+    
     <?php
     if(isset($_SESSION['logged_id'])){
-        include_once 'includes/content.inc.php';
+        include_once 'includes/templateContent.inc.php';
         
     } else {
         echo "WITAJ";
