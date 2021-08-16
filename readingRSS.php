@@ -3,12 +3,12 @@
 
 
  $domOBJ = new DOMDocument();
- $domOBJ->load("https://www.informationweek.com/rss_simple.asp");
+ $domOBJ->load("https://techcommunity.microsoft.com/gxcuf89792/rss/Category?category.id=ITOpsTalk&interaction.style=forum");
 
 
 $channel = $domOBJ->getElementsByTagName('channel');
 foreach ($channel as $data) {
-  $channelTitle = $data->getElementsByTagName("title")->item(0)->nodeValue;
+  $channelTitle = $data->getElementsByTagName("description")->item(0)->nodeValue;
   echo "$channelTitle";
 
 }

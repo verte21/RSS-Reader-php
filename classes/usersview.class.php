@@ -14,8 +14,13 @@ class UsersView extends Users
         if (!empty(count($content))) {
             foreach ($content as $data) {
                 $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
+                if(is_null($title)) {
+                    $title = $data->getElementsByTagName("description")->item(0)->nodeValue;
+
+                }
             }
-        } else {
+        }
+        else {
             $title = $domOBJ->getElementsByTagName('title')->item(0)->nodeValue;
         }
 

@@ -97,12 +97,7 @@ function readFeedsFromInsertedSite($feed)
     }
 }
 
-function printFeedHeaders($title, $link){
-                echo    "<tr>
-                     <td>$title</td>
-                    td><a href='$link'>Czytaj...</a></td>
-                </tr>";
-}
+
 
 
 
