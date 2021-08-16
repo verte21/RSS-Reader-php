@@ -14,6 +14,9 @@
             if (!isset($_SESSION['logged_id'])) {
                 echo '<li class="nav-item"><a class="nav-link" href="loginForm.php">Login</a></li>
                                <li class="nav-item"><a class="nav-link" href="signUpForm.php">Sign Up</a></li>';
+            } else { 
+                echo "<li class='nav-item'><a class='nav-link' href='addFeedForm.php'>Add feed<a></li>";
+                echo "<li class='nav-item'><a class='nav-link' href='includes/logout.inc.php'>Logout<a></li>";
             }
             ?>
 

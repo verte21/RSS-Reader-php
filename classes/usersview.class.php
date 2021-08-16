@@ -24,7 +24,7 @@ class UsersView extends Users
             $title = $domOBJ->getElementsByTagName('title')->item(0)->nodeValue;
         }
 
-        echo "<li><a class='nav-link' id='$feed' name='feedSiteName'>$title</a></li>";
+        echo "<li><a class='nav-link' id='$feed' name='feedSiteName' style='cursor: pointer'>$title</a></li>";
     }
 
     function showNamesOnNav()
