@@ -41,7 +41,7 @@ class UsersView extends Users
     function printFeedHeaders($title, $link){
         echo    "<tr>
              <td>$title</td>
-            <td><a href='$link'>Czytaj...</a></td>
+            <td><a href='$link'>Read more...</a></td>
         </tr>";
 }
 
