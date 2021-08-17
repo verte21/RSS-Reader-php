@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light bg-dark justify-content-center px-0">
+<nav class="navbar sticky-top navbar-light bg-dark justify-content-center px-0">
     <ul class="nav nav-pills nav-fill ">
 
         <?php
@@ -23,6 +23,5 @@
         <li class="nav-item"><a class="nav-link" href="#">About</a></li>
 
     </ul>
-
 </nav>
 
