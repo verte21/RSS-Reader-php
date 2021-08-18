@@ -7418,6 +7418,11 @@ textarea.form-control-lg {
   background-color: #f8f9fa !important;
 }
 
+.bg-myOrange {
+  background-color: rgba(255, 206, 85) !important;
+
+}
+
 .bg-dark {
   background-color: #212529 !important;
 }
