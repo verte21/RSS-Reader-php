@@ -18,38 +18,24 @@
         include_once 'includes/header.inc.php';
         ?>
 
-
         <div class="container h-75 align-items-center">
-
             <form action='includes/login.inc.php' method='post'>
-
                 <div class="row py-5 justify-content-center text-center">
+
                     <div class="col-4 bg-myOrange">
                         <h4>Log in</h4>
-
                         <div class="text-center m-3">
                             <input type="text" name="login" class="form-control" placeholder="Login...">
                         </div>
-
                         <div class="text-center m-3">
-
-
                             <input type="password" name="password" class="form-control" placeholder="Password...">
-
                         </div>
-
                         <div class="text-center m-3">
                             <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                         </div>
-
-
                     </div>
-
             </form>
-
         </div>
-
-
     </div>
 
 

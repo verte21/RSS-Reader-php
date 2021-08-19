@@ -3,7 +3,7 @@
 
 
  $domOBJ = new DOMDocument();
- $domOBJ->load("https://techcommunity.microsoft.com/gxcuf89792/rss/Category?category.id=ITOpsTalk&interaction.style=forum");
+ $domOBJ->load("http://feeds.feedburner.com/niebezpiecznik?format=xml");
 
 
 $channel = $domOBJ->getElementsByTagName('channel');
@@ -14,10 +14,10 @@ foreach ($channel as $data) {
 }
 
 
- $content = $domOBJ->getElementsByTagName('item');
+ $content = $domOBJ->getElementsByTagName('entry'); // albo item
  foreach ($content as $data) {
   $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
-  $link = $data->getElementsByTagName("link")->item(0)->nodeValue;
+  $link = $data->getElementsByTagName("link")->item(0)->nodeValue; // moze byc tez id
   echo    "<tr>
               <td>$title</td>
               <td><a href='$link'>Czytaj...</a></td>

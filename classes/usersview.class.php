@@ -1,8 +1,8 @@
 <?php
 class UsersView extends Users
 {
-     
-    protected function getFeedingSiteName($feed)
+
+    protected function getFeedingSiteName($feed, $listOrTable)
     {
         // https://zaufanatrzeciastrona.pl/feed/
         $domOBJ = new DOMDocument();
@@ -14,17 +14,25 @@ class UsersView extends Users
         if (!empty(count($content))) {
             foreach ($content as $data) {
                 $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
-                if(is_null($title)) {
+                if (is_null($title)) {
                     $title = $data->getElementsByTagName("description")->item(0)->nodeValue;
-
                 }
             }
-        }
-        else {
+        } else {
             $title = $domOBJ->getElementsByTagName('title')->item(0)->nodeValue;
         }
 
-        echo "<li><a class='nav-link' id='$feed' name='feedSiteName' style='cursor: pointer'>$title</a></li>";
+        switch ($listOrTable) {
+            case "list":
+                echo "<li><a class='nav-link' id='$feed' name='feedSiteName' style='cursor: pointer'>$title</a></li>";
+                break;
+            case "table":
+                echo "<tr>
+                    <td>$title</td>
+                    <td><a id='$feed' href='#'></a>Add me!</td>
+                </tr>";
+                break;
+        }
     }
 
     function showNamesOnNav()
@@ -33,21 +41,30 @@ class UsersView extends Users
         $feeds = $this->getFeedsFromDatabase($_SESSION['login']);
         foreach ($feeds as $feed) {
 
-            $this->getFeedingSiteName($feed["source"]);
+            $this->getFeedingSiteName($feed["source"], "list");
         }
     }
 
+    function showNamesOnAddFeed($howManyToShow)
+    {
+        $feeds = $this->getRandomFeeds($howManyToShow);
+        foreach ($feeds as $feed) {
+            $this->getFeedingSiteName($feed["source"], "table");
+        }
 
-    function printFeedHeaders($title, $link){
+    }
+
+
+    function printFeedHeaders($title, $link)
+    {
         echo    "<tr>
              <td>$title</td>
             <td><a href='$link'>Read more...</a></td>
         </tr>";
-}
+    }
 
     function showFeedContent($feed)
     {
-
         $this->getFeedingSiteContent($feed);
     }
 
@@ -74,8 +91,5 @@ class UsersView extends Users
                 $this->printFeedHeaders($title, $link);
             }
         }
-        
     }
-
-    
 }

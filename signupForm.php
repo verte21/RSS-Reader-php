@@ -17,92 +17,53 @@ include 'class-autoload.inc.php';
 
 <body>
 
-<div class="view " style="height: 100vh; background-image: url('img/template.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+    <div class="view " style="height: 100vh; background-image: url('img/template.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
 
-<?php
-    include_once 'includes/header.inc.php';
-?>
-
-
-    <!-- orange colour  = RGB  255, 206, 85 -->
-    <form class='container-fluid' action='includes/signup.inc.php' method='post'>
-
-            <!-- Content -->
-            <div class="container ">
-                <!--Grid row-->
-
-                <!--Grid column-->
-                <div class="col-md-6 col-xl-5 mb-3">
-                    <!--Form-->
-                    <div class="card wow fadeInRight" data-wow-delay="0.3s">
-                        <div class="card-body">
-                            <!--Header-->
-                            <div class="text-center">
-                                <h3 class="white-text">
-                                    <i class="fas fa-user white-text"></i> Register:
-                                </h3>
-                                <hr class="hr-light">
-                            </div>
-                            <!--Body-->
-                            <div class="md-form">
-                                <i class="fas fa-user prefix white-text active"></i>
-                                <!-- <input type="text" id="form3" class="white-text form-control"> -->
-                                <input type="text" name="login" class="form-control" placeholder="Login...">
-
-                            </div>
-                            <div class="md-form">
-                                <i class="fas fa-envelope prefix white-text active"></i>
-                                <input type="email" name="email" class="form-control" placeholder="Email...">
-
-                                <!-- <input type="email" id="form2" class="white-text form-control"> -->
-
-                            </div>
-                            <div class="md-form">
-                                <i class="fas fa-lock prefix white-text active"></i>
-                                <!-- <input type="password" id="form4" class="white-text form-control"> -->
-                                <input type="password" name="password" class="form-control" placeholder="Password...">
-                            </div>
-
-                            <div class="md-form">
-                                <i class="fas fa-lock prefix white-text active"></i>
-                                <!-- <input type="password" id="form4" class="white-text form-control"> -->
-                                <input type="password" name="passwordRepeat" class="form-control" placeholder="Repeat password...">
-                            </div>
+        <?php
+        include_once 'includes/header.inc.php';
+        ?>
 
 
-                            <div class="text-center mt-4">
-                                <button class="btn btn-indigo">Sign up</button>
-                            </div>
+        <!-- orange colour  = RGB  255, 206, 85 -->
+
+        <div class="container h-90 align-items-center">
+
+            <form action='includes/signup.inc.php' method='post'>
+
+                <div class="row py-5 justify-content-center text-center">
+                    <div class="col-4 bg-myOrange">
+                        <h4>Register</h4>
+
+                        <div class="text-center m-3">
+                            <input type="text" name="login" class="form-control" placeholder="Login...">
                         </div>
+                        <div class="text-center m-3">
+                            <input type="email" name="email" class="form-control" placeholder="Email...">
+                        </div>
+                        <div class="text-center m-3">
+                            <input type="password" name="password" class="form-control" placeholder="Password...">
+                        </div>
+                        <div class="text-center m-3">
+                            <input type="password" name="password" class="form-control" placeholder="Repeat password...">
+                        </div>
+                        <div class="text-center m-3">
+                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                        </div>
+
+
                     </div>
-                    <!--/.Form-->
+
                 </div>
-                <!--Grid column-->
-            </div>
-            <!-- Content -->
-    
-        <!-- Full Page Intro -->
+            </form>
+        </div>
 
 
 
 
 
 
-
-
-
-
-    </form>
-
-</div>
-
-
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="js/bootstrap.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="js/bootstrap.js"></script>
 </body>
 
 </html>

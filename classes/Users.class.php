@@ -99,5 +99,11 @@ class Users extends Dbh
         return $results;
     }
 
-
+    function getRandomFeeds($howManyFeedsToGet){
+        $sql = "SELECT source FROM feeds AS t1 JOIN (SELECT id FROM feeds ORDER BY RAND() LIMIT $howManyFeedsToGet) as t2 ON t1.id=t2.id";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        $results = $stmt->fetchAll();
+        return $results;
+    }
 }
