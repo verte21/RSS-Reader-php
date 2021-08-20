@@ -100,10 +100,29 @@ class Users extends Dbh
     }
 
     function getRandomFeeds($howManyFeedsToGet){
-        $sql = "SELECT source FROM feeds AS t1 JOIN (SELECT id FROM feeds ORDER BY RAND() LIMIT $howManyFeedsToGet) as t2 ON t1.id=t2.id";
+        $sql = "SELECT * FROM feeds AS t1 JOIN (SELECT id FROM feeds ORDER BY RAND() LIMIT $howManyFeedsToGet) as t2 ON t1.id=t2.id";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
         $results = $stmt->fetchAll();
         return $results;
     }
+
+
+    function isFeedInUserFeedsList($user, $feedId){
+        $sql = "SELECT * FROM $user WHERE feed_id = $feedId";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        $results = $stmt->fetchAll();
+        return $results;
+    }
+
+    function addFeedToUserDb($login, $id)
+    {
+        $sql = "INSERT INTO $login (`id`, `feed_id`) VALUES (NULL, $id)";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+    }
+
+
+
 }

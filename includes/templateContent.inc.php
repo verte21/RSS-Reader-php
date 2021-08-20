@@ -5,16 +5,11 @@ include "class-autoload.inc.php";
 <script>
         $(document).ready(function() {
             $("a[name='feedSiteName']").click(function() {
-                // TODO do contentu dać id i wczytać na bieżąco 
                 var feedLink = $(this).attr("id");
-                console.log(feedLink);
-            
                 $('#tableFeeds').load("includes/feedContent.inc.php", {
                     link: feedLink
                 });
-               
             })
-
         })
 
         $(document).ready(function() {

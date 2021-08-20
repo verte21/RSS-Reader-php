@@ -2,7 +2,7 @@
 class UsersView extends Users
 {
 
-    protected function getFeedingSiteName($feed, $listOrTable)
+    protected function getFeedingSiteName($feed, $listOrTable, $feedId)
     {
         // https://zaufanatrzeciastrona.pl/feed/
         $domOBJ = new DOMDocument();
@@ -26,10 +26,11 @@ class UsersView extends Users
             case "list":
                 echo "<li><a class='nav-link' id='$feed' name='feedSiteName' style='cursor: pointer'>$title</a></li>";
                 break;
+
             case "table":
                 echo "<tr>
                     <td>$title</td>
-                    <td><a id='$feed' href='#'></a>Add me!</td>
+                    <td><a name='addFeed' id='$feed' data-feed-id-in-db='$feedId' href='#'></a>Add me!</td>
                 </tr>";
                 break;
         }
@@ -41,7 +42,7 @@ class UsersView extends Users
         $feeds = $this->getFeedsFromDatabase($_SESSION['login']);
         foreach ($feeds as $feed) {
 
-            $this->getFeedingSiteName($feed["source"], "list");
+            $this->getFeedingSiteName($feed["source"], "list", $feed['id']);
         }
     }
 
@@ -49,7 +50,7 @@ class UsersView extends Users
     {
         $feeds = $this->getRandomFeeds($howManyToShow);
         foreach ($feeds as $feed) {
-            $this->getFeedingSiteName($feed["source"], "table");
+            $this->getFeedingSiteName($feed["source"], "table", $feed['id']);
         }
 
     }
@@ -58,9 +59,9 @@ class UsersView extends Users
     function printFeedHeaders($title, $link)
     {
         echo    "<tr>
-             <td>$title</td>
-            <td><a href='$link'>Read more...</a></td>
-        </tr>";
+                     <td>$title</td>
+                    <td><a href='$link'>Read more...</a></td>
+                </tr>";
     }
 
     function showFeedContent($feed)

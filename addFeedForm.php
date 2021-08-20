@@ -17,14 +17,13 @@ include "class-autoload.inc.php";
             background-color: #FFD154;
         }
     </style>
+    
 </head>
 
 
 
 <body class="h-100">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="js/bootstrap.js"></script>
+   
 
 
 
@@ -49,12 +48,12 @@ include "class-autoload.inc.php";
         <div class="row m-2">
             <form class='border border-info border-3 rounded' action="includes/addFeed.inc.php" method='post'>
                 <h3 class='text-center pt-4'>Or choose from our base</h3>
-                <table class='table'>
-                    <tbody id="feedsFromDb">
-                        <?php
-                        $obj = new UsersView();
-                        $obj->showNamesOnAddFeed(5)
-
+                <table class='table rounded table-sm table-primary table-striped text-center'>
+                    <tbody id="feedsFromDb" >
+                       
+                       <?php
+                            $obj = new UsersView();
+                            $obj->showNamesOnAddFeed(5)
                         ?>
                     </tbody>
                 </table>
@@ -71,6 +70,25 @@ include "class-autoload.inc.php";
 
 
 
+
+    <script>
+            $(document).ready(function() {
+            $("a[name='addFeed']").click(function() {
+                var feedLink = $(this).attr("id");
+                var feedIdInDb = $(this).attr("data-feed-id-in-db");
+               
+
+                $('#tableFeeds').load("includes/addFeedFromBase.inc.php", {
+                    link: feedLink,
+                    id: feedInDb
+                });
+            })
+        })
+
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.js"></script>
 </body>
 
 </html>

@@ -70,7 +70,17 @@ class Userscontr extends Users{
         }
     } 
 
-    
+    function addChosenFeedingSite($id, $login){
+      
+
+        if (empty($this->isFeedInUserFeedsList($login, $id)))  
+        {
+                // juz w bazie
+        } else { // if not in user Db add
+            $this->addFeedToUserDb($login, $id);
+        }
+
+    }
 
 
 

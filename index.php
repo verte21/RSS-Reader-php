@@ -39,16 +39,9 @@
 
     </div>
 
-
-
-
-
-        
-
     <!--TODO <?php
                 include_once 'includes/footer.inc.php';
                 ?> -->
-
 
 </body>
 
