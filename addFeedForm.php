@@ -33,24 +33,22 @@ include "class-autoload.inc.php";
         ?>
 
         <div class="row m-2" name="inputLink">
-            <form class='border border-info border-3 rounded' action="includes/addFeed.inc.php" method='post'>
+            <div class='border border-info border-3 rounded'>
                 <h3 class='text-center pt-4'>Paste your feed link here</h3>
                 <div class="text-center m-3">
-                    <input type="text" name="feedLinkToAdd" class="form-control" placeholder="Your feed link...">
+                    <input id= "input" type="text" name="feedLinkToAdd" class="form-control" placeholder="Your feed link...">
                 </div>
 
                 <div class="text-center m-3">
-                    <button type="submit" name="submit" class="btn btn-info">Add feed</button>
+                    <button id='submit-btn' class="btn btn-info">Add feed</button>
                 </div>
-            </form>
+            </div>
         </div>
-
         <div class="row m-2">
             <form class='border border-info border-3 rounded' action="includes/addFeed.inc.php" method='post'>
                 <h3 class='text-center pt-4'>Or choose from our base</h3>
                 <table class='table rounded table-sm table-primary table-striped text-center'>
                     <tbody id="feedsFromDb">
-
                         <?php
                         $obj = new UsersView();
                         $obj->showNamesOnAddFeed(5)
@@ -58,19 +56,8 @@ include "class-autoload.inc.php";
                     </tbody>
                 </table>
             </form>
-
-
         </div>
-
-
     </div>
-
-
-
-
-
-
-
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -86,10 +73,20 @@ include "class-autoload.inc.php";
                 });
             })
 
+
+            $("#submit-btn").click(function() {
+                var feedLink = document.getElementById("input").value;
+                console.log(feedLink);
+
+                $(this).load("includes/addFeedFromLink.inc.php", {
+                    link: feedLink,
+                });
+            })
+
             // $("p[name='addFeed']").on("click",  function() {
             //     var feedLink = $(this).attr("id");
             //     var feedIdInDb = $(this).attr("data-feed-id-in-db");
-        
+
             //     $("html").load("includes/addFeedFromBase.inc.php", {
             //             link: feedLink,
             //             id: feedIdInDb
@@ -99,7 +96,7 @@ include "class-autoload.inc.php";
         })
     </script>
 
-  
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="js/bootstrap.js"></script>
 </body>

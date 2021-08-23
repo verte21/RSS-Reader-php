@@ -97,8 +97,48 @@ function readFeedsFromInsertedSite($feed)
     }
 }
 
+function alert($msg) {
+    echo "<script type='text/javascript'>alert('$msg');</script>";
+}
 
+                
+function validateFeed($feed){
 
+    $domOBJ = new DOMDocument();
+    $domOBJ->load($feed);
 
+    $content = $domOBJ->getElementsByTagName('channel');
 
+    if (!empty(count($content))) {
+        foreach ($content as $data) {
+            $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
+            if (is_null($title)) {
+                $title = $data->getElementsByTagName("description")->item(0)->nodeValue;
+            }
+        }
+    } else {
+        $title = $domOBJ->getElementsByTagName('title')->item(0)->nodeValue;
+    }
 
+    if (!$title) return false; // false if at the end $title is empty
+
+    $content = $domOBJ->getElementsByTagName('item');
+    if (!empty(count($content))) {
+        foreach ($content as $data) {
+            $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
+            $link = $data->getElementsByTagName("link")->item(0)->nodeValue;
+        }
+    }
+    
+    $content = $domOBJ->getElementsByTagName('entry');
+    if (!empty(count($content))) {                  // TODO i messed something with logic here
+        foreach ($content as $data) {
+            $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
+            $link = $data->getElementsByTagName("link")->item(0)->nodeValue;
+        }
+    }
+
+    if (!$title && !$link) return false;
+
+    return true;
+}

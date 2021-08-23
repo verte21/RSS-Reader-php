@@ -89,17 +89,19 @@ class Users extends Dbh
 
     }
 
-    protected function getFeedsFromDatabase($login){
+    protected function getFeedsFromDatabase($login)
+    {
 
         $sql = "SELECT f.source FROM feeds f, $login u WHERE u.feed_id = f.id";
-        
+
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
         $results = $stmt->fetchAll();
         return $results;
     }
 
-    function getRandomFeeds($howManyFeedsToGet){
+    function getRandomFeeds($howManyFeedsToGet)
+    {
         $sql = "SELECT * FROM feeds AS t1 JOIN (SELECT id FROM feeds ORDER BY RAND() LIMIT $howManyFeedsToGet) as t2 ON t1.id=t2.id";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
@@ -108,14 +110,15 @@ class Users extends Dbh
     }
 
 
-    function isFeedInUserFeedsList($user, $feedId){
+    function isFeedInUserFeedsList($user, $feedId)
+    {
         $sql = "SELECT * FROM $user WHERE feed_id = $feedId";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
         $results = $stmt->fetchAll();
         return $results;
     }
-
+        
     function addFeedToUserDb($login, $id)
     {
         $sql = "INSERT INTO $login (`id`, `feed_id`) VALUES (NULL, $id)";
@@ -123,6 +126,19 @@ class Users extends Dbh
         $stmt->execute();
     }
 
+    function linkContent($link)
+    {
+        $sql = "SELECT * FROM feeds WHERE source = '$link'";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        $results = $stmt->fetch();
+        return $results;
+    }
 
-
-}
+    function addFeed($link)
+    {
+        $sql = "INSERT INTO `feeds` (`id`, `source`) VALUES (NULL, '$link')";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+    }
+} // end

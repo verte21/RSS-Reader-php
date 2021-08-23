@@ -21,10 +21,9 @@ class UsersView extends Users
         } else {
             $title = $domOBJ->getElementsByTagName('title')->item(0)->nodeValue;
         }
-         echo "<tr>
+        echo "<tr>
                     <td>$title</td>
                     <td class='border-2 border-danger' style='cursor: pointer'><p class='m-0' name='addFeed' id='$feed' data-feed-id-in-db='$feedId'>Add me!</p></td>";
-    
     }
 
     protected function getFeedingSiteNameForNav($feed)
@@ -46,9 +45,8 @@ class UsersView extends Users
         } else {
             $title = $domOBJ->getElementsByTagName('title')->item(0)->nodeValue;
         }
-        
-                echo "<li><a class='nav-link' id='$feed' name='feedSiteName' style='cursor: pointer'>$title</a></li>";
-               
+
+        echo "<li><a class='nav-link' id='$feed' name='feedSiteName' style='cursor: pointer'>$title</a></li>";
     }
 
     function showNamesOnNav()
@@ -67,7 +65,6 @@ class UsersView extends Users
         foreach ($feeds as $feed) {
             $this->getFeedingSiteNameForTable($feed["source"], $feed['id']);
         }
-
     }
 
 
@@ -107,8 +104,5 @@ class UsersView extends Users
                 $this->printFeedHeaders($title, $link);
             }
         }
-
-
-
     }
 }

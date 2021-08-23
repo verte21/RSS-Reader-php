@@ -73,15 +73,22 @@ class Userscontr extends Users
 
     function addChosenFeedingSite($id, $login)
     {
+        require_once 'functions.inc.php';
         if (empty($this->isFeedInUserFeedsList($login, $id))) {
             $this->addFeedToUserDb($login, $id);
-            echo "<script type='text/javascript'>alert('Feed added to your database');</script>";
-            echo "<p class='m-0'>Added!</p>";
+                alert('Feed added to your database');
+                echo "<p class='m-0'>Added!</p>";
         } else {
-            echo "<script type='text/javascript'>alert('Feed already in your database');</script>";
-            echo "<p class='m-0'>Already in base!</p>";
+                alert('Feed already in your database');
+                echo "<p class='m-0'>Already in base!</p>";
         }
     }
+
+    function addFeedIdBasedOnLink($id, $login)
+    {
+        $this->addFeedToUserDb($login, $id);
+    }
+
 
     function siemankoTest()
     {
