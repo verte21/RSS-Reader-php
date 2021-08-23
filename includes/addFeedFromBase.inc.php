@@ -9,5 +9,5 @@ if ((isset($_POST['id'])) && isset($_SESSION['login']))
 
     $obj = new Userscontr();
     $obj->addChosenFeedingSite($feedId, $userLogin);
-    echo "<p class='m-0'>Added!</p>";
+    
 } 
