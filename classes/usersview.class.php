@@ -2,7 +2,7 @@
 class UsersView extends Users
 {
 
-    protected function getFeedingSiteName($feed, $listOrTable, $feedId)
+    protected function getFeedingSiteNameForTable($feed, $feedId)
     {
         // https://zaufanatrzeciastrona.pl/feed/
         $domOBJ = new DOMDocument();
@@ -21,19 +21,34 @@ class UsersView extends Users
         } else {
             $title = $domOBJ->getElementsByTagName('title')->item(0)->nodeValue;
         }
-
-        switch ($listOrTable) {
-            case "list":
-                echo "<li><a class='nav-link' id='$feed' name='feedSiteName' style='cursor: pointer'>$title</a></li>";
-                break;
-
-            case "table":
-                echo "<tr>
+         echo "<tr>
                     <td>$title</td>
-                    <td><a name='addFeed' id='$feed' data-feed-id-in-db='$feedId' href='#'></a>Add me!</td>
-                </tr>";
-                break;
+                    <td class='border-2 border-danger' style='cursor: pointer'><p class='m-0' name='addFeed' id='$feed' data-feed-id-in-db='$feedId'>Add me!</p></td>";
+    
+    }
+
+    protected function getFeedingSiteNameForNav($feed)
+    {
+        // https://zaufanatrzeciastrona.pl/feed/
+        $domOBJ = new DOMDocument();
+        $domOBJ->load("$feed");
+
+        $content = $domOBJ->getElementsByTagName('channel');
+
+
+        if (!empty(count($content))) {
+            foreach ($content as $data) {
+                $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
+                if (is_null($title)) {
+                    $title = $data->getElementsByTagName("description")->item(0)->nodeValue;
+                }
+            }
+        } else {
+            $title = $domOBJ->getElementsByTagName('title')->item(0)->nodeValue;
         }
+        
+                echo "<li><a class='nav-link' id='$feed' name='feedSiteName' style='cursor: pointer'>$title</a></li>";
+               
     }
 
     function showNamesOnNav()
@@ -42,7 +57,7 @@ class UsersView extends Users
         $feeds = $this->getFeedsFromDatabase($_SESSION['login']);
         foreach ($feeds as $feed) {
 
-            $this->getFeedingSiteName($feed["source"], "list", $feed['id']);
+            $this->getFeedingSiteNameForNav($feed["source"]);
         }
     }
 
@@ -50,7 +65,7 @@ class UsersView extends Users
     {
         $feeds = $this->getRandomFeeds($howManyToShow);
         foreach ($feeds as $feed) {
-            $this->getFeedingSiteName($feed["source"], "table", $feed['id']);
+            $this->getFeedingSiteNameForTable($feed["source"], $feed['id']);
         }
 
     }
@@ -92,5 +107,8 @@ class UsersView extends Users
                 $this->printFeedHeaders($title, $link);
             }
         }
+
+
+
     }
 }

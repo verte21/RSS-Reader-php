@@ -71,24 +71,19 @@ class Userscontr extends Users{
     } 
 
     function addChosenFeedingSite($id, $login){
-      
-
         if (empty($this->isFeedInUserFeedsList($login, $id)))  
-        {
-                // juz w bazie
-        } else { // if not in user Db add
+        {   
             $this->addFeedToUserDb($login, $id);
+            echo "<script type='text/javascript'>alert('Feed added to your database');</script>";
+ 
+                // nioe ma w bazie usera 
+        } else { // jest\
+            echo "<script type='text/javascript'>alert('Feed already in your database');</script>";
         }
-
     }
-
-
-
 
     function siemankoTest(){
         echo "jojojo elo elo";
     }
-
-
 
 }

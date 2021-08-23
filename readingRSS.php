@@ -3,7 +3,7 @@
 
 
  $domOBJ = new DOMDocument();
- $domOBJ->load("http://feeds.feedburner.com/niebezpiecznik?format=xml");
+ $domOBJ->load("https://www.informationweek.com/rss_simple.asp");
 
 
 $channel = $domOBJ->getElementsByTagName('channel');
@@ -14,7 +14,7 @@ foreach ($channel as $data) {
 }
 
 
- $content = $domOBJ->getElementsByTagName('entry'); // albo item
+ $content = $domOBJ->getElementsByTagName('item'); // albo item
  foreach ($content as $data) {
   $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
   $link = $data->getElementsByTagName("link")->item(0)->nodeValue; // moze byc tez id
