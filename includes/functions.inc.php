@@ -142,3 +142,10 @@ function validateFeed($feed){
 
     return true;
 }
+
+
+function addlinkButton($msg)
+ {
+    echo "<button id='submit-btn' class='btn btn-info col-4'>$msg</button>";
+
+}   

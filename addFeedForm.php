@@ -40,7 +40,7 @@ include "class-autoload.inc.php";
                 </div>
 
                 <div class="text-center m-3">
-                    <button id='submit-btn' class="btn btn-info">Add feed</button>
+                    <button id='submit-btn' class="btn btn-info col-4">Add feed</button>
                 </div>
             </div>
         </div>
@@ -82,16 +82,6 @@ include "class-autoload.inc.php";
                     link: feedLink,
                 });
             })
-
-            // $("p[name='addFeed']").on("click",  function() {
-            //     var feedLink = $(this).attr("id");
-            //     var feedIdInDb = $(this).attr("data-feed-id-in-db");
-
-            //     $("html").load("includes/addFeedFromBase.inc.php", {
-            //             link: feedLink,
-            //             id: feedIdInDb
-            //     });
-            // });
 
         })
     </script>
