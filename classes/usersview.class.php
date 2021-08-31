@@ -49,6 +49,30 @@ class UsersView extends Users
         echo "<li><a class='nav-link' id='$feed' name='feedSiteName' style='cursor: pointer'>$title</a></li>";
     }
 
+    protected function getFeedingSiteForManageFeeds($feed)
+    {
+        // https://zaufanatrzeciastrona.pl/feed/
+        $domOBJ = new DOMDocument();
+        $domOBJ->load("$feed");
+
+        $content = $domOBJ->getElementsByTagName('channel');
+
+
+        if (!empty(count($content))) {
+            foreach ($content as $data) {
+                $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
+                if (is_null($title)) {
+                    $title = $data->getElementsByTagName("description")->item(0)->nodeValue;
+                }
+            }
+        } else {
+            $title = $domOBJ->getElementsByTagName('title')->item(0)->nodeValue;
+        }
+        echo "<tr>
+                    <td>$title</td>
+                    <td class='border-2 border-danger' style='cursor: pointer'><p class='m-0' name='deleteFeed' id='$feed'>Delete</p></td>";
+    }
+
     function showNamesOnNav()
     {
 
@@ -64,6 +88,15 @@ class UsersView extends Users
         $feeds = $this->getRandomFeeds($howManyToShow);
         foreach ($feeds as $feed) {
             $this->getFeedingSiteNameForTable($feed["source"], $feed['id']);
+        }
+    }
+
+    function showNamesForManageFeedsTable()
+    {
+        $feeds = $this->getFeedsFromDatabase($_SESSION['login']);
+        foreach ($feeds as $feed) {
+
+            $this->getFeedingSiteForManageFeeds($feed["source"]);
         }
     }
 

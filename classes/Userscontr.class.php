@@ -90,8 +90,9 @@ class Userscontr extends Users
     }
 
 
-    function siemankoTest()
+    function deleteFeed($feedSource, $userLogin)
     {
-        echo "jojojo elo elo";
+      $idToDelete = $this->getFeedIdBySource($feedSource);
+      $this->deleteFeedFromUserDb($idToDelete["id"], $userLogin);
     }
 }

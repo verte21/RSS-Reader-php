@@ -81,24 +81,17 @@ class Users extends Dbh
         return $results;
     }
 
-
-    protected function showFeeds($login)
-    {
-        // todo wyświetlanie feedów
-
-
-    }
-
     protected function getFeedsFromDatabase($login)
     {
 
-        $sql = "SELECT f.source FROM feeds f, $login u WHERE u.feed_id = f.id";
+        $sql = "SELECT f.source  FROM feeds f, $login u WHERE u.feed_id = f.id";
 
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
         $results = $stmt->fetchAll();
         return $results;
     }
+
 
     function getRandomFeeds($howManyFeedsToGet)
     {
@@ -141,4 +134,23 @@ class Users extends Dbh
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
     }
+
+    function getFeedIdBySource($source)
+    {
+        $sql = "SELECT id FROM feeds WHERE source = '$source'";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        $results = $stmt->fetch();
+        return $results;
+    }
+
+    function deleteFeedFromUserDb($feedId, $login)
+    {
+        $sql = "DELETE FROM $login WHERE $login.`feed_id` = $feedId";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+
+    }
+
+
 } // end
