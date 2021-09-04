@@ -15,13 +15,10 @@
                   <li class="nav-item"><a class="nav-link" href="signUpForm.php">Sign Up</a></li>
                   ';
             } else {
-                echo "<li class='nav-item'><a class='nav-link' href='addFeedForm.php'>Add feed<a></li>";
-                echo "<li class='nav-item'><a class='nav-link' href='manageFeeds.php'>Manage feeds<a></li>";
-                echo "<li class='nav-item'><a class='nav-link' href='includes/logout.inc.php'>Logout<a></li>";
+                echo "<li class='nav-item'><a class='nav-link' href='addFeedForm.php'>Add feed</a></li>";
+                echo "<li class='nav-item'><a class='nav-link' href='manageFeeds.php'>Manage feeds</a></li>";
+                echo "<li class='nav-item'><a class='nav-link' href='includes/logout.inc.php'>Logout</a></li>";
             }
             ?>
-
-            <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-
         </ul>
     </nav>

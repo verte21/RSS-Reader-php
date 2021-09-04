@@ -1,24 +1,10 @@
 <?php
 session_start();
-include "class-autoload.inc.php";
+        include "class-autoload.inc.php";
+        require_once 'includes/heading.inc.php';
+
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSS-Reader</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <style>
-        .bg-myOrange {
-            background-color: #FFD154;
-        }
-    </style>
-
-</head>
 
 
 
