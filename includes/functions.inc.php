@@ -2,12 +2,12 @@
 
 function emptySignup($login, $email, $password, $passwordRepeat)
 {
-    $result = false;
+    $result = true;
 
     if (empty($login || empty($email) || empty($password) || empty($passwordRepeat))) {
-        $result = true;
-    } else {
         $result = false;
+    } else {
+        $result = true;
     }
     return $result;
 }
@@ -28,19 +28,19 @@ function wrongLoginLength($login)
 {
     $loginLength = strlen($login);
     $result = false;
-    if ($loginLength > 10 || $loginLength < 3) {
+    if ($loginLength > 11 || $loginLength < 3) {
         $result = true;
     } else {
         $result = false;
     }
     return $result;
-}
+}   
 
 function wrongPasswordLength($password)
 {
     $passwordLength = strlen($password);
     $result = false;
-    if ($passwordLength > 40 || $passwordLength < 5) {
+    if ($passwordLength > 41 || $passwordLength < 5) {
         $result = true;
     } else {
         $result = false;
@@ -140,14 +140,12 @@ function validateFeed($feed){
             $link = $data->getElementsByTagName("link")->item(0)->nodeValue;
         }
     }
-
     }
-    
-    
 
     if (!$title && !$link) return false;
 
-    return true;
+    return true;                
+    //  TODO ZLA LOGIKA NIE DZIALA DODAWANIE!
 }
 
 
@@ -156,3 +154,63 @@ function addlinkButton($msg)
     echo "<button id='submit-btn' class='btn btn-info col-4'>$msg</button>";
 
 }   
+
+
+function printInputError($err)
+{
+    echo '<div class="alert alert-danger" role="alert">';
+
+    if ($err == "invalidLoginOrPwd"){
+     echo "Invalid username or password!"; 
+    }
+    
+    if ($err == "loginAndPwdNotSet"){
+        echo "Enter Your login and password.";
+    }
+
+    if ($err == "emptySignup"){
+        echo "Please fill all the fields.";
+    }
+
+    if ($err == "invalidLogin"){
+        echo "Invalid login.";
+    }
+
+    if ($err == "loginLength"){
+        echo "Invalid login length (3-10 characters).";
+    }
+
+    if ($err == "passwordLength"){
+        echo "Invalid password length (min 5 characters).";
+    }
+
+    if ($err == "invalidEmail"){
+        echo "Invalid email.";
+    }
+    
+    if ($err == "pwdNotMatch"){
+        echo "Passwords dont match.";
+    }
+
+    if ($err == "loginExists"){
+        echo "Login already exists.";
+    }
+
+    if ($err == "emailExists"){
+        echo "Email already exists.";
+    }
+    
+    echo "</div>";
+}
+
+function printInfo($msg){
+    echo '<div class="alert alert-info" role="alert">';
+
+    if ($msg == "postSignUp"){
+        echo "Congratulations!</br>You just created your account.<br> Now You can log in.";
+    }
+
+
+
+    echo "</div>";
+}

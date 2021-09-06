@@ -27,11 +27,11 @@ require_once 'includes/heading.inc.php';
             <div class='border border-info border-3 rounded'>
                 <h3 class='text-center pt-4'>Or choose from our base</h3>
                
-                <table class='table rounded table-primary table-hover table-sm table-striped text-center'>
+                <table class='table rounded table-primary table-hover table-sm table-striped text-center shadow'>
                     <tbody id="feedsFromDb">
                         <?php
-                        $obj = new UsersView();
-                        $obj->showNamesOnAddFeed(5)
+                            $obj = new UsersView();
+                            $obj->showNamesOnAddFeed(5)
                         ?>
                     </tbody>
                 </table>

@@ -1,6 +1,8 @@
 <?php
         include 'class-autoload.inc.php';
         require_once 'includes/heading.inc.php';
+        require_once 'includes/functions.inc.php';
+
 ?>
 
 
@@ -11,9 +13,6 @@
         <?php
         include_once 'includes/header.inc.php';
         ?>
-
-
-        <!-- orange colour  = RGB  255, 206, 85 -->
 
         <div class="container h-90 align-items-center">
 
@@ -33,12 +32,17 @@
                             <input type="password" name="password" class="form-control" placeholder="Password...">
                         </div>
                         <div class="text-center m-3">
-                            <input type="password" name="password" class="form-control" placeholder="Repeat password...">
+                            <input type="password" name="passwordRepeat" class="form-control" placeholder="Repeat password...">
                         </div>
                         <div class="text-center m-3">
                             <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                         </div>
 
+                        <?php
+                            if (isset($_GET["err"])) {
+                                printInputError($_GET["err"]);
+                            }
+                        ?>
 
                     </div>
 

@@ -13,10 +13,15 @@ include "class-autoload.inc.php";
         })
 
         $(document).ready(function() {
-            var firstFeed = $("a[name='feedSiteName']").first().attr("id");
-            $('#tableFeeds').load("includes/feedContent.inc.php", {
+            let firstFeed = $("a[name='feedSiteName']").first().attr("id");
+            if (firstFeed == undefined) {
+              $('#tableFeeds').load("includes/emptyFeedList.inc.php");
+            } else {
+               $('#tableFeeds').load("includes/feedContent.inc.php", {
                     link: firstFeed
                 });
+            }
+            
         })
 
 </script>
@@ -31,8 +36,8 @@ include "class-autoload.inc.php";
                     <h2 class="text-myBlue text-center">Your feeds</h2>
                 </li>
                 <?php
-                $obj = new UsersView();
-                $obj->showNamesOnNav();
+                  $obj = new UsersView();
+                  $obj->showNamesOnNav();
                 ?>
 
         </ul>
@@ -43,19 +48,16 @@ include "class-autoload.inc.php";
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-3">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
-                <table class="table shadow table-striped table-lg table-hover">
+                <table class="table shadow table-striped table-hover">
                     <tbody id="tableFeeds">
                             <!-- space for feeds -->
                     </tbody>
                 </table>
             </div>
-
         </div>
-      
-
-      
       </div>
     </main>
+    
   </div>
 </div>
 

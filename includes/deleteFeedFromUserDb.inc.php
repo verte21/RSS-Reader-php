@@ -9,5 +9,4 @@ if ((isset($_POST['link'])) && isset($_SESSION['login']))
 
     $obj = new Userscontr();
     $obj->deleteFeed($feedSource, $userLogin);
-    echo "<p class='m-0'>Deleted!</p>";
 } 

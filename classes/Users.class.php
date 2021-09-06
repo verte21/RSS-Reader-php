@@ -2,9 +2,6 @@
 
 class Users extends Dbh
 {
-    // tylkio users rozmawia z bazą 
-    // wyszukiwanie feedow, uzytkownik cos wprowadza       
-    // tutaj tylko zapytania, wyświetlanie w view 
 
     function addUser($login, $email, $password)
     {
@@ -74,7 +71,7 @@ class Users extends Dbh
             $stmt->execute([$login]);
             $results = $stmt->fetch();
         } else {
-            header("Location:../index.php?err=invalidLoginOrPwd");
+            header("Location:../loginForm.php?err=invalidLoginOrPwd");
             exit();
         }
 

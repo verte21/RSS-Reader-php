@@ -16,9 +16,8 @@ session_start();
         ?>
 
         <div class="row m-2">
-            <form class='border border-info border-3 rounded' action="includes/addFeed.inc.php" method='post'>
                 <h3 class='text-center pt-4'>Your feeds: </h3>
-                <table class='table rounded table-sm table-primary table-striped text-center'>
+                <table class='table rounded table-sm table-primary table-striped text-center shadow'>
                     <tbody id="feedsFromDb">
                         <?php
                             $obj = new UsersView();
@@ -26,7 +25,6 @@ session_start();
                         ?>
                     </tbody>
                 </table>
-            </form>
         </div>
     </div>
 
@@ -34,14 +32,13 @@ session_start();
 
     <script>
         $(document).ready(function() {
-            $("p[name='deleteFeed']").click(function() {
+            $("button[name='deleteFeed']").click(function() {
                 var feedLink = $(this).attr("id");
 
                 $(this).load("includes/deleteFeedFromUserDb.inc.php", {
                     link: feedLink,
                 });
             })
-
         })
     </script>
 
