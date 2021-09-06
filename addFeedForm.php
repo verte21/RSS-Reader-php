@@ -1,31 +1,10 @@
 <?php
 session_start();
 include "class-autoload.inc.php";
+require_once 'includes/heading.inc.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSS-Reader</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <style>
-        .bg-myOrange {
-            background-color: #FFD154;
-        }
-    </style>
-
-</head>
-
-
-
 <body class="h-100">
-
-
-
 
     <div class="content bg-myOrange align-items-center" style="height: 100vh">
         <?php
@@ -47,7 +26,7 @@ include "class-autoload.inc.php";
         <div class="row m-2">
             <form class='border border-info border-3 rounded' action="includes/addFeed.inc.php" method='post'>
                 <h3 class='text-center pt-4'>Or choose from our base</h3>
-                <table class='table rounded table-sm table-primary table-striped text-center'>
+                <table class='table rounded table-primary table-hover table-sm table-striped text-center gx-4'>
                     <tbody id="feedsFromDb">
                         <?php
                         $obj = new UsersView();
@@ -63,9 +42,9 @@ include "class-autoload.inc.php";
 
     <script>
         $(document).ready(function() {
-            $("p[name='addFeed']").click(function() {
-                var feedLink = $(this).attr("id");
-                var feedIdInDb = $(this).attr("data-feed-id-in-db");
+            $("button[name='addFeed']").click(function() {
+                let feedLink = $(this).attr("id");
+                let feedIdInDb = $(this).attr("data-feed-id-in-db");
 
                 $(this).load("includes/addFeedFromBase.inc.php", {
                     link: feedLink,
@@ -75,8 +54,7 @@ include "class-autoload.inc.php";
 
 
             $("#submit-btn").click(function() {
-                var feedLink = document.getElementById("input").value;
-                console.log(feedLink);
+                let feedLink = document.getElementById("input").value;
 
                 $(this).load("includes/addFeedFromLink.inc.php", {
                     link: feedLink,

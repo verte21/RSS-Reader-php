@@ -16,5 +16,39 @@ echo '<!DOCTYPE html>
         .bg-myOrange {
             background-color: #FFD154;
         }
+        .bg-myDarkOrange {
+            background-color: #FFCB3B;
+        }
+        .bg-myGreen {
+            background-color: #6EFF82;
+        }
+        .bg-myBlue {
+            background-color: #2E5CFF;
+        }
+        .bg-myPink {
+            background-color: #FF4776;
+        }
+
+        .bg-myOrangeTwo {
+            background-color: #FFC18F;
+        }
+
+        .text-myOrange {
+            color: #FFD154 !important;
+        }
+        .text-myDarkOrange {
+            color: #FFCB3B !important;
+        }
+        .text-myGreen {
+            color: #6EFF82 !important;
+        }
+        .text-myBlue {
+            color: #2E5CFF !important;
+        }
+        .text-myPink {
+            color: #FF4776 !important;
+        }
+
+
     </style>
 </head>';

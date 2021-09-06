@@ -19,7 +19,7 @@ if (!empty($_POST['link'])){
             $id = $content["id"];
             $obj->addFeedToUserDb($_SESSION["login"], $id);
             alert("Feed added!");
-            addlinkButton("Try another button!");
+           echo "Add feed";
     
     
          } else { // if already in db, add 
@@ -30,18 +30,19 @@ if (!empty($_POST['link'])){
             {
                 $obj->addFeedToUserDb($_SESSION["login"], $id);
                 alert("Feed added!");
-                addlinkButton("Add another feed");
+                echo "Add another feed";
     
             } else {
                 alert("Feed already in your db!");
-                addlinkButton("Try another feed!");
+                echo "Try another feed!";
             }
     
          }
     
     } else { // is not a feed 
         alert('Your link is not a RSS feed.');
-        addlinkButton("Try other link");
+        // addlinkButton("Try other link");
+        echo "Try other link";
     };    
 
     

@@ -1,7 +1,6 @@
 
-    <nav class="navbar sticky-top navbar-light bg-dark justify-content-center px-0">
+    <nav class="navbar sticky-top bg-myGreen text-myPink justify-content-center px-0">
         <ul class="nav nav-pills nav-fill ">
-
             <?php
             if (isset($_SESSION['logged_id']))
                 echo "<li class='nav-item px-5 border border-primary'><a class='nav-link' href='#'>{$_SESSION["login"]}</a></li>";

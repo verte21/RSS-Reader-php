@@ -103,9 +103,12 @@ function alert($msg) {
 
                 
 function validateFeed($feed){
-
+    error_reporting(E_ALL ^ E_WARNING); 
     $domOBJ = new DOMDocument();
     $domOBJ->load($feed);
+    if (!$domOBJ->load($feed)){
+        return false;
+    }
 
     $content = $domOBJ->getElementsByTagName('channel');
 
@@ -128,15 +131,19 @@ function validateFeed($feed){
             $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
             $link = $data->getElementsByTagName("link")->item(0)->nodeValue;
         }
-    }
-    
-    $content = $domOBJ->getElementsByTagName('entry');
-    if (!empty(count($content))) {                  // TODO i messed something with logic here
+    } else 
+    {
+        $content = $domOBJ->getElementsByTagName('entry');
+    if (!empty(count($content))) {                  // logic
         foreach ($content as $data) {
             $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
             $link = $data->getElementsByTagName("link")->item(0)->nodeValue;
         }
     }
+
+    }
+    
+    
 
     if (!$title && !$link) return false;
 
