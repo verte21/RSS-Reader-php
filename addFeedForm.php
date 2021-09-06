@@ -24,9 +24,10 @@ require_once 'includes/heading.inc.php';
             </div>
         </div>
         <div class="row m-2">
-            <form class='border border-info border-3 rounded' action="includes/addFeed.inc.php" method='post'>
+            <div class='border border-info border-3 rounded'>
                 <h3 class='text-center pt-4'>Or choose from our base</h3>
-                <table class='table rounded table-primary table-hover table-sm table-striped text-center gx-4'>
+               
+                <table class='table rounded table-primary table-hover table-sm table-striped text-center'>
                     <tbody id="feedsFromDb">
                         <?php
                         $obj = new UsersView();
@@ -34,7 +35,8 @@ require_once 'includes/heading.inc.php';
                         ?>
                     </tbody>
                 </table>
-            </form>
+            
+            </div>
         </div>
     </div>
 

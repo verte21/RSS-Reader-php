@@ -22,34 +22,41 @@ include "class-autoload.inc.php";
 </script>
 
 
-<div class="container-fluid flex-grow-1 d-flex vh-100">
-    <div class="row flex-fill flex-column flex-sm-row">
-
-        <div class="col-sm-3 col-md-2 sidebar flex-shrink-1 bg-myGreen pt-3 sidebar">
-            <ul class="nav flex-sm-column sticky-top pt-1 text-myBlue">
-                <li>
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-myGreen sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+        <li>
                     <h2 class="text-myBlue text-center">Your feeds</h2>
                 </li>
                 <?php
                 $obj = new UsersView();
                 $obj->showNamesOnNav();
                 ?>
-            </ul>
-        </div>
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 flex-grow-1 py-3 border rounded bg-myOrangeTwo">
-    
-            <div class="table-responsive">
-                <table class="table table-striped table-sm ">
+        </ul>
+      </div>
+    </nav>
+
+
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-3">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
+                <table class="table shadow table-striped table-lg table-hover">
                     <tbody id="tableFeeds">
                             <!-- space for feeds -->
                     </tbody>
                 </table>
             </div>
-            </main>
-        </div>
 
-    </div>
+        </div>
+      
+
+      
+      </div>
+    </main>
+  </div>
 </div>
 
 

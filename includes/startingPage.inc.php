@@ -1,2 +1,10 @@
 <?php
-echo "<div class='view' style='height: 100vh; background-image: url('img/rss-feed-reader-startpage.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;'></div>";
+echo '
+<div class="container-fluid p-0">
+
+<img src="img/rss-feed-reader-startpage.jpg" class="img-fluid" alt="Responsive image">
+
+</div>';
+
+
+

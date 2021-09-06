@@ -2001,8 +2001,6 @@ progress {
   border-color: #bacbe6;
 }
 
-/* --bs-table-hover-bg: #bfd1ec;  */
-
 .table-secondary {
   --bs-table-bg: #e2e3e5;
   --bs-table-striped-bg: #d7d8da;
