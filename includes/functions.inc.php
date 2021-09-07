@@ -131,21 +131,20 @@ function validateFeed($feed){
             $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
             $link = $data->getElementsByTagName("link")->item(0)->nodeValue;
         }
-    } else 
-    {
+    } else {
         $content = $domOBJ->getElementsByTagName('entry');
-    if (!empty(count($content))) {                  // logic
-        foreach ($content as $data) {
-            $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
-            $link = $data->getElementsByTagName("link")->item(0)->nodeValue;
+        if (!empty(count($content))) {                  // logic
+             foreach ($content as $data) {
+                 $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
+                 $link = $data->getElementsByTagName("link")->item(0)->nodeValue;
         }
     }
     }
-
     if (!$title && !$link) return false;
 
+
     return true;                
-    //  TODO ZLA LOGIKA NIE DZIALA DODAWANIE!
+   
 }
 
 

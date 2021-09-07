@@ -152,6 +152,9 @@ class UsersView extends Users
             foreach ($content as $data) {
                 $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
                 $link = $data->getElementsByTagName("link")->item(0)->nodeValue;
+                if (empty($link)) {
+                    $link = $data-> getElementsByTagName("id")->item(0)->nodeValue;
+                }
                 $this->printFeedHeaders($title, $link);
             }
         }
