@@ -17,6 +17,10 @@
                 echo "<li class='nav-item'><a class='nav-link' href='manageFeeds.php'>Manage feeds</a></li>";
                 echo "<li class='nav-item'><a class='nav-link' href='includes/logout.inc.php'>Logout</a></li>";
             }
+            if ($_SESSION['login']=="Test123"){
+                echo "<li class='nav-item'><a class='nav-link' href='adminPanel.php'>AdminPanel</a></li>";
+            }
+
             ?>
         </ul>
 </header>

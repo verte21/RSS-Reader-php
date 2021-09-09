@@ -18,7 +18,7 @@
             <div class='border border-info border-3 rounded'>
                 <h3 class='text-center pt-4'>Add feed to base</h3>
                 <div class="text-center m-3">
-                    <input id= "input" type="text" name="feedLinkToAdd" class="form-control" placeholder="Your feed link...">
+                    <input id= "input-add" type="text" name="feedLinkToAdd" class="form-control" placeholder="Your feed link...">
                 </div>
 
                 <div class="text-center m-3">
@@ -28,16 +28,27 @@
         </div>
 
         <div class="row m-1 border border-info border-3 rounded justify-content-center ">
-                <h3 class='text-center pt-4'>Feed list: </h3>
+            <div class="row justify-content-center m-2">
+            <div class="col-8">
+                        <input id="input-search" class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search">
+                    </div>
+            </div>
+            <div class="row justify-content-center">
+            <div class="col-4"> 
+            <button id='search-btn' class="btn btn-info" type="submit">Search</button>
+
+            </div>
+
+            </div>
+                    
+                     
+                     <h3 class='text-center pt-1'>Feed list: </h3>
                 <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                       
-                                   <?php
-                                        $obj = new UsersView();
-                                        $obj->printPageNumbers(10);
-                                   ?>
-                        
-                                    <li class="page-item">
+                    <ul id='pagination' class="pagination justify-content-center">
+                        <?php
+                            $obj = new UsersView();
+                            $obj->printPageNumbers(10, "");
+                        ?>         
                     </ul>
                 </nav>
 
@@ -59,40 +70,69 @@
     
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.js"></script>
 
     <script>
         $(document).ready(function() {
+            const firstActive = () => {$('.page-item').first().addClass('active');}
+            firstActive();
 
+          
             $('#feedsFromDb').load("includes/feedSources.inc.php", {
-                    pageNumber: 1
-                });
-            $('.page-item').first().addClass('active');
+                pageNumber: 1
+            });
+        
+            $("#search-btn").click(function() {
+                let queryString = document.getElementById("input-search").value;
+                $("#pagination").empty();
 
-            $(".page-link").click(function() {
-                let pageNumber = $(this).attr('id');
-                console.log(pageNumber);
-                $('#feedsFromDb').load("includes/feedSources.inc.php", {
-                    pageNumber: pageNumber
+                $('#pagination').load("includes/pagesPrinting.inc.php", {
+                    rowsPerPage: 10,
+                    searchQuery: queryString
                 });
+
+                $('#feedsFromDb').load("includes/feedSources.inc.php", {
+                    pageNumber: 1,
+                    queryString: queryString
+                });
+               
+                $('.page-item').first().addClass('active')
+            })
+
+             $(document).on('click', ".page-link" ,function() {
+                let pageNumber = $(this).attr('id');
+                let queryString = document.getElementById("input-search").value;
+                $('#feedsFromDb').load("includes/feedSources.inc.php", {
+                    pageNumber: pageNumber,
+                    queryString: queryString
+                });
+
                 $(".page-link").parent().removeClass('active');
                 $(this).parent().addClass('active');
                 
             })
-        
+            
+            $("#submit-btn").click(function() {
+                let feedLink = document.getElementById("input-add").value;
 
-            $("button[name='deleteFeed']").click(function() {
-                var feedLink = $(this).attr("id");
-
-                $(this).load("includes/deleteFeedFromUserDb.inc.php", {
-                    link: feedLink,
+                $(this).load("includes/adminAddFeedFromLink.inc.php", {
+                    link: feedLink
                 });
             })
+
+            $(document).on('click',"td #deleteButton", function() {
+                let feedId = $(this).attr("data-feed-id");
+                console.log("tutaj");
+
+                $(this).load("includes/adminDeleteFeed.inc.php", {
+                    feedId: feedId,
+                });
+            });
         })
     </script>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="js/bootstrap.js"></script>
 </body>
 
 </html>

@@ -139,7 +139,11 @@ class Users extends Dbh
         $sql = "DELETE FROM subscriptions WHERE user_id = $userId AND feed_id = $feedId";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
-
+    }
+    function adminDeleteFeedById($feedId){
+        $sql = "DELETE FROM feeds WHERE id = $feedId";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
     }
 
 
@@ -161,18 +165,26 @@ class Users extends Dbh
 
     }
 
-    function howManyPagesOnPanelAdmin($howManyRecordsOnPage){
-        $sql = "SELECT CEIL((SELECT COUNT(id) FROM feeds)/$howManyRecordsOnPage) AS numberOfPages";
+    function howManyPagesOnPanelAdmin($howManyRecordsOnPage, $queryString){
+        if (!empty($queryString)){
+            $sql = "SELECT CEIL((SELECT COUNT(id) FROM feeds WHERE `source` LIKE '%$queryString%')/$howManyRecordsOnPage) 
+                        AS numberOfPages";
+        } else {
+            $sql = "SELECT CEIL((SELECT COUNT(id) FROM feeds)/$howManyRecordsOnPage) AS numberOfPages";
+        }
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
         $results = $stmt->fetch();
         return $results;
     }
 
-
-
-
-
+    function searchByText($string, $fromWhere, $howMany){
+        $sql = "SELECT * FROM `feeds` WHERE `source` LIKE '%$string%' LIMIT $fromWhere, $howMany";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        $results = $stmt->fetchAll();
+        return $results;
+    }
 
 
 } // end

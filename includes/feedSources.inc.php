@@ -1,8 +1,15 @@
 <?php
     include "../class-autoload.inc.php";
     $pageNumber = $_POST['pageNumber'];
-    var_dump($pageNumber);
-
     $obj = new UsersView();
-    $obj->printFeedsInfo($pageNumber, 10);
+
+
+    if (isset($_POST['queryString'])){
+        $obj->printFeedsInfo($pageNumber, 10, $_POST["queryString"]);
+    } else {
+         $obj->printFeedsInfo($pageNumber, 10, "");
+    }
+
+
+
                         

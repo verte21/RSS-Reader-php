@@ -112,3 +112,12 @@ body {
 .myBackground {
   background-color: white;
 }
+
+.page-item:hover {
+  cursor: pointer;
+}
+tr {
+  line-height: 25px !important;
+  min-height: 25px !important;
+  height: 25px !important;
+}
