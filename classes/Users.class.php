@@ -11,13 +11,6 @@ class Users extends Dbh
         $stmt->execute([$email, $login, $hash_pwd]);
     }
 
-    function addUserFeedsTable($id)
-    {
-        $sql = "INSERT INTO user_feeds(id) VALUES (?)";
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$id]);
-    }
-
     function createUserFeedsTable($login)
     {
         $sql = "CREATE TABLE $login (`id` INT(255) UNSIGNED NOT NULL AUTO_INCREMENT , `feed_id` INT(10) NOT NULL,
@@ -78,10 +71,10 @@ class Users extends Dbh
         return $results;
     }
 
-    protected function getFeedsFromDatabase($login)
+    protected function getFeedsFromDatabase($userId)
     {
 
-        $sql = "SELECT f.source  FROM feeds f, $login u WHERE u.feed_id = f.id";
+        $sql = "SELECT f.source  FROM feeds f, subscriptions s WHERE s.user_id = $userId && s.feed_id = f.id";
 
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
@@ -100,18 +93,18 @@ class Users extends Dbh
     }
 
 
-    function isFeedInUserFeedsList($user, $feedId)
+    function isFeedInUserFeedsList($userId, $feedId)
     {
-        $sql = "SELECT * FROM $user WHERE feed_id = $feedId";
+        $sql = "SELECT * FROM subscriptions WHERE feed_id = $feedId && user_id = $userId";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
         $results = $stmt->fetchAll();
         return $results;
     }
         
-    function addFeedToUserDb($login, $id)
+    function addFeedToUserDb($userId, $feedId)
     {
-        $sql = "INSERT INTO $login (`id`, `feed_id`) VALUES (NULL, $id)";
+        $sql = "INSERT INTO subscriptions (`id` ,`user_id`, `feed_id`) VALUES (NULL, $userId, $feedId)";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
     }
@@ -141,13 +134,45 @@ class Users extends Dbh
         return $results;
     }
 
-    function deleteFeedFromUserDb($feedId, $login)
+    function deleteFeedFromUserDb($feedId, $userId)
     {
-        $sql = "DELETE FROM $login WHERE $login.`feed_id` = $feedId";
+        $sql = "DELETE FROM subscriptions WHERE user_id = $userId AND feed_id = $feedId";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
 
     }
+
+
+
+    function deleteFeedFromFeedsDb($feedId)
+    {
+        $sql = "DELETE FROM feeds WHERE id = $feedId";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+    }
+
+    function getFeeds($howMany, $fromWhere)
+    {
+        $sql = "SELECT * FROM feeds ORDER BY id LIMIT $fromWhere, $howMany";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        $results = $stmt->fetchAll();
+        return $results;
+
+    }
+
+    function howManyPagesOnPanelAdmin($howManyRecordsOnPage){
+        $sql = "SELECT CEIL((SELECT COUNT(id) FROM feeds)/$howManyRecordsOnPage) AS numberOfPages";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        $results = $stmt->fetch();
+        return $results;
+    }
+
+
+
+
+
 
 
 } // end

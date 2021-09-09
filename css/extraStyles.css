@@ -68,3 +68,47 @@
 .table-hover > tbody > tr:hover {
   background: #8c9eb8;
 }
+
+body {
+  background-color: #ffd154;
+}
+
+.bg-myOrange {
+  background-color: #ffd154;
+}
+.bg-myDarkOrange {
+  background-color: #ffcb3b;
+}
+.bg-myGreen {
+  background-color: #6eff82;
+}
+.bg-myBlue {
+  background-color: #2e5cff;
+}
+.bg-myPink {
+  background-color: #ff4776;
+}
+
+.bg-myOrangeTwo {
+  background-color: #ffc18f;
+}
+
+.text-myOrange {
+  color: #ffd154 !important;
+}
+.text-myDarkOrange {
+  color: #ffcb3b !important;
+}
+.text-myGreen {
+  color: #6eff82 !important;
+}
+.text-myBlue {
+  color: #2e5cff !important;
+}
+.text-myPink {
+  color: #ff4776 !important;
+}
+
+.myBackground {
+  background-color: white;
+}

@@ -10,9 +10,7 @@ include "class-autoload.inc.php";
                     link: feedLink
                 });
             })
-        })
-
-        $(document).ready(function() {
+        
             let firstFeed = $("a[name='feedSiteName']").first().attr("id");
             if (firstFeed == undefined) {
               $('#tableFeeds').load("includes/emptyFeedList.inc.php");

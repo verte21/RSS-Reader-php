@@ -16,19 +16,19 @@ if (!empty($_POST['link'])){
          {  // add link to base and to the user 
             $obj->AddFeed($link);
             $content = $obj->linkContent($link);
-            $id = $content["id"];
-            $obj->addFeedToUserDb($_SESSION["login"], $id);
+            $feedId = $content["id"];
+            $obj->addFeedToUserDb($_SESSION["logged_id"], $feedId);
             alert("Feed added!");
            echo "Add feed";
     
     
          } else { // if already in db, add 
     
-            $id = $linkContent["id"];
+            $feedId = $linkContent["id"];
             $obj = new Users();
-            if (empty($obj->isFeedInUserFeedsList($_SESSION["login"], $id)))
+            if (empty($obj->isFeedInUserFeedsList($_SESSION["logged_id"], $feedId)))
             {
-                $obj->addFeedToUserDb($_SESSION["login"], $id);
+                $obj->addFeedToUserDb($_SESSION["logged_id"], $feedId);
                 alert("Feed added!");
                 echo "Add another feed";
     

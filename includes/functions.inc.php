@@ -2,13 +2,13 @@
 
 function emptySignup($login, $email, $password, $passwordRepeat)
 {
-    $result = true;
 
-    if (empty($login || empty($email) || empty($password) || empty($passwordRepeat))) {
-        $result = false;
-    } else {
+    if (empty($login) || empty($email) || empty($password) || empty($passwordRepeat)) {
         $result = true;
+    } else {
+        $result = false;
     }
+
     return $result;
 }
 

@@ -4,9 +4,9 @@ include "../class-autoload.inc.php";
 
 if ((isset($_POST['link'])) && isset($_SESSION['login']))
 {
-    $userLogin = $_SESSION["login"];
+    $userId = $_SESSION["logged_id"];
     $feedSource = $_POST['link'];
 
     $obj = new Userscontr();
-    $obj->deleteFeed($feedSource, $userLogin);
+    $obj->deleteFeed($feedSource, $userId);
 } 

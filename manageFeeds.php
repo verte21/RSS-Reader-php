@@ -22,7 +22,7 @@ session_start();
                         <?php
                             $obj = new UsersView();
                             $obj->showNamesForManageFeedsTable()
-                        ?>
+                        ?> 
                     </tbody>
                 </table>
         </div>

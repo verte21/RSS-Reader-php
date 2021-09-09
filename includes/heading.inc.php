@@ -49,6 +49,10 @@ echo '<!DOCTYPE html>
         .text-myPink {
             color: #FF4776 !important;
         }
+        
+        body {
+            background-color: #ffd154;
+          }
 
     </style>
 </head>';
