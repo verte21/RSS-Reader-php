@@ -97,7 +97,7 @@
                     queryString: queryString
                 });
                
-                $('.page-item').first().addClass('active')
+                $('.page-item').first().addClass('active') // nie zmienia
             })
 
              $(document).on('click', ".page-link" ,function() {
@@ -123,12 +123,23 @@
 
             $(document).on('click',"td #deleteButton", function() {
                 let feedId = $(this).attr("data-feed-id");
-                console.log("tutaj");
-
                 $(this).load("includes/adminDeleteFeed.inc.php", {
                     feedId: feedId,
                 });
             });
+
+            $(document).on("click", "td #editButton", function() {
+                let feedId = $(this).attr("data-feed-id");
+                let row = this.parentNode.parentNode;
+                let link = row.childNodes[1];
+                let extractedFieldValue = $(link).text();
+            
+                $(this).load("includes/adminEditFeedValue.inc.php", {
+                    feedId: feedId,
+                    feedSource: extractedFieldValue
+                });
+            });
+
         })
     </script>
 

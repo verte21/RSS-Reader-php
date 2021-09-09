@@ -186,5 +186,11 @@ class Users extends Dbh
         return $results;
     }
 
+    function updateFeedSource($id ,$source){
+        $sql = "UPDATE `feeds` SET `source` = '$source' WHERE `feeds`.`id` = $id";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+    }
+
 
 } // end
